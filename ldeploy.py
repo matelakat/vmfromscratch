@@ -126,7 +126,7 @@ class VersionedConfigFile(object):
         >>> cfg = VersionedConfigFile(target='target', saved='saved')
         >>> cfg.osops.files = {'saved': 'some bytes'}
         >>> cfg.restore()
-        'OK'
+        '[saved] -> [target] OK'
         >>> cfg.osops.files['target']
         'some bytes'
 
@@ -155,7 +155,7 @@ class VersionedConfigFile(object):
                 self.target
             )
         self.osops.copy(self.saved, self.target)
-        return 'OK'
+        return '[{0}] -> [{1}] OK'.format(self.saved, self.target)
 
 
 
