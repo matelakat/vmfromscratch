@@ -2,14 +2,16 @@ class RealOSOperations(object):
     def __init__(self):
         import os
         import subprocess
+        import shutil
         self.os = os
         self.subprocess = subprocess
+        self.shutil = shutil
 
     def file_exists(self, filename):
         return self.os.path.exists(filename) and self.os.path.isfile(filename)
 
     def copy(self, source, target):
-        self.files[target] = self.files[source]
+        self.shutil.copyfile(source, target)
 
     def changed(self, fname):
         """
@@ -179,6 +181,8 @@ def main():
         config.osops = RealOSOperations()
         if args.action == 'restore':
             print config.restore()
+        elif args.action == 'save':
+            print config.save()
 
 
 
